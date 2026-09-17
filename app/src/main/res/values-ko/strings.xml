@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Korean (ko)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">색상</string>
+    <string name="str_color_brightness">명도</string>
+    <string name="str_color_blink">깜박거리다</string>
+    <!-- Camera -->
+    <string name="str_camera_title">카메라</string>
+    <string name="str_camera_request_permission">%s을(를) 사용하려면 카메라 및 저장소 액세스를 허용하십시오.</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">갤러리</string>
+    <string name="str_gallery_empty">아직 사진이 없습니다.</string>
+    <!-- Compass -->
+    <string name="str_compass_title">나침반</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">모스</string>
+    <string name="str_morse_your_text">당신의 텍스트</string>
+    <string name="str_morse_hint_your_text">여기에 텍스트를 입력하세요</string>
+    <string name="str_morse_code_text">모스 식 부호</string>
+    <!-- Skin -->
+    <string name="str_skin_title">피부</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">광고를 제거하다.</string>
+    <string name="str_pro_limited_offer">당신을 위한 한정 제안:</string>
+    <string name="str_pro_sale_off">50% 할인</string>
+    <!-- Settings -->
+    <string name="str_settings_title">설정</string>
+    <string name="str_settings_customize">사용자 정의</string>
+    <string name="str_settings_language">언어</string>
+    <string name="str_settings_automatic_on">자동 켜짐</string>
+    <string name="str_settings_sound">소리</string>
+    <string name="str_settings_support">지원하다</string>
+    <string name="str_settings_feedback">피드백</string>
+    <string name="str_settings_share">공유하다</string>
+    <string name="str_settings_version">버전</string>
+
+</resources>

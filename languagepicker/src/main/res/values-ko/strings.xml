@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_select_language">언어 선택</string>
+    <string name="str_find">찾기</string>
+
+</resources>

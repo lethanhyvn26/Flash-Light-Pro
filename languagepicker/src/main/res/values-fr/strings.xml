@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="str_select_language">Sélectionner la langue</string>
+    <string name="str_find">Trouvé</string>
+
+</resources>

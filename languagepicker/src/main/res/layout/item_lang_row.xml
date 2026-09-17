@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/langRow"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen40dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/space_start_end">
+
+    <TextView
+        android:id="@+id/tvEmojiFlagLangRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/dimen8dp"
+        android:gravity="center"
+        android:textColor="@color/color_text_2d2d2d"
+        android:textSize="@dimen/text16sp"
+        tools:text="🏁" />
+
+    <TextView
+        android:id="@+id/tvNameLangRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center_vertical|start"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/color_text_2d2d2d"
+        android:textSize="@dimen/text16sp"
+        tools:text="India (IN)" />
+
+    <ImageView
+        android:id="@+id/ivDropdownLangRow"
+        android:layout_width="@dimen/grid_3x"
+        android:layout_height="@dimen/grid_3x"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_check" />
+</LinearLayout>

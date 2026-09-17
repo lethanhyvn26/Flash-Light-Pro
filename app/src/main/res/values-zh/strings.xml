@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Chinese (zh)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">颜色</string>
+    <string name="str_color_brightness">亮度</string>
+    <string name="str_color_blink">闪烁</string>
+    <!-- Camera -->
+    <string name="str_camera_title">相机</string>
+    <string name="str_camera_request_permission">请允许相机和存储访问以使用 %s</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">画廊</string>
+    <string name="str_gallery_empty">您还没有任何照片</string>
+    <!-- Compass -->
+    <string name="str_compass_title">罗盘</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">莫尔斯电码</string>
+    <string name="str_morse_your_text">您的文字</string>
+    <string name="str_morse_hint_your_text">在此输入您的文字</string>
+    <string name="str_morse_code_text">摩尔斯电码</string>
+    <!-- Skin -->
+    <string name="str_skin_title">皮肤</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">移除广告。</string>
+    <string name="str_pro_limited_offer">为您提供限量优惠：</string>
+    <string name="str_pro_sale_off">50折优惠</string>
+    <!-- Settings -->
+    <string name="str_settings_title">设置</string>
+    <string name="str_settings_customize">定制</string>
+    <string name="str_settings_language">语言</string>
+    <string name="str_settings_automatic_on">自动开启</string>
+    <string name="str_settings_sound">声音</string>
+    <string name="str_settings_support">支持</string>
+    <string name="str_settings_feedback">反馈</string>
+    <string name="str_settings_share">分享</string>
+    <string name="str_settings_version">版本</string>
+
+</resources>

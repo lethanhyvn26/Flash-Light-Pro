@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_500">#1e1d26</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="color_text_2d2d2d">#2D2D2D</color>
+    <color name="cp_divider_color">#d1d1d1</color>
+    <color name="color_line">#DEDEDE</color>
+    <color name="color_bg_card_gray">#f5f5f5</color>
+
+</resources>

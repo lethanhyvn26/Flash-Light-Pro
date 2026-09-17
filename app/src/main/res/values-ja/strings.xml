@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Japanese (ja)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">色</string>
+    <string name="str_color_brightness">輝度</string>
+    <string name="str_color_blink">まばたき</string>
+    <!-- Camera -->
+    <string name="str_camera_title">カメラ</string>
+    <string name="str_camera_request_permission">%s を使用するためにカメラとストレージへのアクセスを許可してください</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">ギャラリー</string>
+    <string name="str_gallery_empty">まだ写真がありません</string>
+    <!-- Compass -->
+    <string name="str_compass_title">方位磁針</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">モールス信号</string>
+    <string name="str_morse_your_text">あなたのテキスト</string>
+    <string name="str_morse_hint_your_text">ここにテキストを入力してください</string>
+    <string name="str_morse_code_text">モールス信号</string>
+    <!-- Skin -->
+    <string name="str_skin_title">肌</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">広告を削除。</string>
+    <string name="str_pro_limited_offer">あなたのための限定オファー:</string>
+    <string name="str_pro_sale_off">50%オフ</string>
+    <!-- Settings -->
+    <string name="str_settings_title">設定</string>
+    <string name="str_settings_customize">カスタマイズ</string>
+    <string name="str_settings_language">言語</string>
+    <string name="str_settings_automatic_on">自動オン</string>
+    <string name="str_settings_sound">音</string>
+    <string name="str_settings_support">サポート</string>
+    <string name="str_settings_feedback">フィードバック</string>
+    <string name="str_settings_share">共有</string>
+    <string name="str_settings_version">バージョン</string>
+
+</resources>

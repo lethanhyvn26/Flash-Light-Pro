@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="Theme.Flashlight" parent="Theme.AppCompat.Light.NoActionBar" >
+
+        <item name="android:windowBackground">@color/color_app</item>
+        <item name="android:statusBarColor">@color/color_app</item>
+        <item name="android:navigationBarColor">@color/color_app</item>
+        <item name="android:colorPrimary">@color/color_app</item>
+
+    </style>
+
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        ...
+        <!-- Set a white background behind the splash screen icon. -->
+        <item name="windowSplashScreenIconBackgroundColor">#313035</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>
+<!--        <item name="windowSplashScreenAnimationDuration">200</item>-->
+        <item name="postSplashScreenTheme">@style/Theme.Flashlight</item>
+        <item name="windowSplashScreenBackground">@color/color_app</item>
+        <item name="windowSplashScreenAnimationDuration">100</item>
+    </style>
+</resources>

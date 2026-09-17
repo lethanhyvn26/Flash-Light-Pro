@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Russian (ru)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">Цвет</string>
+    <string name="str_color_brightness">Яркость</string>
+    <string name="str_color_blink">Мигать</string>
+    <!-- Camera -->
+    <string name="str_camera_title">Камера</string>
+    <string name="str_camera_request_permission">Разрешите доступ к камере и хранилищу для использования %s.</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">Галерея</string>
+    <string name="str_gallery_empty">У вас пока нет фотографий</string>
+    <!-- Compass -->
+    <string name="str_compass_title">Компас</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">Морс</string>
+    <string name="str_morse_your_text">Ваш текст</string>
+    <string name="str_morse_hint_your_text">Введите здесь свой текст</string>
+    <string name="str_morse_code_text">Азбука Морзе</string>
+    <!-- Skin -->
+    <string name="str_skin_title">Кожа</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">Убрать рекламу.</string>
+    <string name="str_pro_limited_offer">Ограниченное предложение для вас:</string>
+    <string name="str_pro_sale_off">50% СКИДКА</string>
+    <!-- Settings -->
+    <string name="str_settings_title">Настройки</string>
+    <string name="str_settings_customize">Настроить</string>
+    <string name="str_settings_language">Язык</string>
+    <string name="str_settings_automatic_on">Автоматическое включение</string>
+    <string name="str_settings_sound">Звук</string>
+    <string name="str_settings_support">Поддерживать</string>
+    <string name="str_settings_feedback">Обратная связь</string>
+    <string name="str_settings_share">Делиться</string>
+    <string name="str_settings_version">Версия</string>
+
+</resources>

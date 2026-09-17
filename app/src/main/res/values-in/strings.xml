@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Indonesian (in)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">Warna</string>
+    <string name="str_color_brightness">Kecerahan</string>
+    <string name="str_color_blink">Berkedip</string>
+    <!-- Camera -->
+    <string name="str_camera_title">Kamera</string>
+    <string name="str_camera_request_permission">Harap izinkan akses kamera dan penyimpanan untuk menggunakan %s</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">Galeri</string>
+    <string name="str_gallery_empty">Anda belum memiliki foto apa pun</string>
+    <!-- Compass -->
+    <string name="str_compass_title">Kompas</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">Morse</string>
+    <string name="str_morse_your_text">Teks Anda</string>
+    <string name="str_morse_hint_your_text">Masukkan teks Anda di sini</string>
+    <string name="str_morse_code_text">Kode morse</string>
+    <!-- Skin -->
+    <string name="str_skin_title">Kulit</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">Hilangkan iklan.</string>
+    <string name="str_pro_limited_offer">Penawaran terbatas untuk Anda:</string>
+    <string name="str_pro_sale_off">DISKON 50</string>
+    <!-- Settings -->
+    <string name="str_settings_title">Pengaturan</string>
+    <string name="str_settings_customize">Sesuaikan</string>
+    <string name="str_settings_language">Bahasa</string>
+    <string name="str_settings_automatic_on">Otomatis aktif</string>
+    <string name="str_settings_sound">Suara</string>
+    <string name="str_settings_support">Mendukung</string>
+    <string name="str_settings_feedback">Masukan</string>
+    <string name="str_settings_share">Membagikan</string>
+    <string name="str_settings_version">Versi: kapan</string>
+
+</resources>

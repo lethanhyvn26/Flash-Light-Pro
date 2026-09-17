@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Turkish (tr)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">Renk</string>
+    <string name="str_color_brightness">Parlaklık</string>
+    <string name="str_color_blink">Göz kırpmak</string>
+    <!-- Camera -->
+    <string name="str_camera_title">Kamera</string>
+    <string name="str_camera_request_permission">Lütfen %s\'i kullanmak için kamera ve depolama erişimine izin verin</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">Galeri</string>
+    <string name="str_gallery_empty">Henüz hiç fotoğrafınız yok</string>
+    <!-- Compass -->
+    <string name="str_compass_title">Pusula</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">Mors</string>
+    <string name="str_morse_your_text">Metniniz</string>
+    <string name="str_morse_hint_your_text">Metninizi buraya girin</string>
+    <string name="str_morse_code_text">Mors kodu</string>
+    <!-- Skin -->
+    <string name="str_skin_title">Deri</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">Reklamları kaldırmak.</string>
+    <string name="str_pro_limited_offer">Size özel sınırlı teklif:</string>
+    <string name="str_pro_sale_off">50 İNDİRİM</string>
+    <!-- Settings -->
+    <string name="str_settings_title">Ayarlar</string>
+    <string name="str_settings_customize">Özelleştirmek</string>
+    <string name="str_settings_language">Dil</string>
+    <string name="str_settings_automatic_on">Otomatik açık</string>
+    <string name="str_settings_sound">Ses</string>
+    <string name="str_settings_support">Destek</string>
+    <string name="str_settings_feedback">Geri bildirim</string>
+    <string name="str_settings_share">Paylaşmak</string>
+    <string name="str_settings_version">Sürüm</string>
+
+</resources>

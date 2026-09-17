@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Spanish (es)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">Color</string>
+    <string name="str_color_brightness">Brillo</string>
+    <string name="str_color_blink">Parpadear</string>
+    <!-- Camera -->
+    <string name="str_camera_title">Cámara</string>
+    <string name="str_camera_request_permission">Por favor, permita el acceso a la cámara y al almacenamiento para usar %s</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">Galería</string>
+    <string name="str_gallery_empty">Aún no tienes fotos</string>
+    <!-- Compass -->
+    <string name="str_compass_title">Brújula</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">morse</string>
+    <string name="str_morse_your_text">Tu texto</string>
+    <string name="str_morse_hint_your_text">Escriba su texto aquí</string>
+    <string name="str_morse_code_text">Código Morse</string>
+    <!-- Skin -->
+    <string name="str_skin_title">Piel</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">Quitar anuncios.</string>
+    <string name="str_pro_limited_offer">Oferta limitada para ti:</string>
+    <string name="str_pro_sale_off">50% REBAJADO</string>
+    <!-- Settings -->
+    <string name="str_settings_title">Ajustes</string>
+    <string name="str_settings_customize">Personalizar</string>
+    <string name="str_settings_language">Idioma</string>
+    <string name="str_settings_automatic_on">Encendido automático</string>
+    <string name="str_settings_sound">Sonido</string>
+    <string name="str_settings_support">Apoyo</string>
+    <string name="str_settings_feedback">Comentario</string>
+    <string name="str_settings_share">Compartir</string>
+    <string name="str_settings_version">Versión</string>
+
+</resources>

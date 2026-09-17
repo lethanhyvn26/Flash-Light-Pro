@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Hindi (hi)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">रंग</string>
+    <string name="str_color_brightness">चमक</string>
+    <string name="str_color_blink">झपकी</string>
+    <!-- Camera -->
+    <string name="str_camera_title">कैमरा</string>
+    <string name="str_camera_request_permission">कृपया %s का उपयोग करने के लिए कैमरा और स्टोरेज तक पहुंच की अनुमति दें</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">गैलरी</string>
+    <string name="str_gallery_empty">आपके पास अभी तक कोई फ़ोटो नहीं है</string>
+    <!-- Compass -->
+    <string name="str_compass_title">दिशा सूचक यंत्र</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">बकल</string>
+    <string name="str_morse_your_text">अपका संदेश</string>
+    <string name="str_morse_hint_your_text">अपना टेक्स्ट यहां दर्ज करें</string>
+    <string name="str_morse_code_text">मोर्स कोड</string>
+    <!-- Skin -->
+    <string name="str_skin_title">त्वचा</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">विज्ञापन हटाएँ।</string>
+    <string name="str_pro_limited_offer">आपके लिए सीमित ऑफर:</string>
+    <string name="str_pro_sale_off">50 प्रतिशत की छूट</string>
+    <!-- Settings -->
+    <string name="str_settings_title">समायोजन</string>
+    <string name="str_settings_customize">अनुकूलित करें</string>
+    <string name="str_settings_language">भाषा</string>
+    <string name="str_settings_automatic_on">स्वचालित चालू</string>
+    <string name="str_settings_sound">आवाज़</string>
+    <string name="str_settings_support">सहायता</string>
+    <string name="str_settings_feedback">प्रतिक्रिया</string>
+    <string name="str_settings_share">शेयर करना</string>
+    <string name="str_settings_version">संस्करण</string>
+
+</resources>

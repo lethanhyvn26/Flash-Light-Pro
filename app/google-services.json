@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "506188868194",
+    "project_id": "flashlight-bba54",
+    "storage_bucket": "flashlight-bba54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506188868194:android:c5a284c58a4c95491cbf3b",
+        "android_client_info": {
+          "package_name": "flashlight.phichung.com.torch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZVgyE4MK5nvSx-Q7I3tbRx9zHx3bdMLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

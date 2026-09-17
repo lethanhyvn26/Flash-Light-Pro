@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name" translatable="false">Flashlight</string>
+
+    <string name="email_support" translatable="false">hoo309@gmail.com</string>
+    <string name="email_subject_format" translatable="false" formatted="true">[%s Android] - SUPPORT &#38; FEEDBACK</string>
+    <string name="degree_format" translatable="false">%d°</string>
+
+    <string name="str_settings_privacy_admob" translatable="false">AdMob privacy settings</string>
+
+    <!-- Color -->
+    <string name="str_color_title">Color</string>
+    <string name="str_color_brightness">Brightness</string>
+    <string name="str_color_blink">Blink</string>
+    <!-- Camera -->
+    <string name="str_camera_title">Camera</string>
+    <string name="str_camera_request_permission">Please allow camera and storage access to use %s</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">Gallery</string>
+    <string name="str_gallery_empty">You don\'t have any photos yet</string>
+    <!-- Compass -->
+    <string name="str_compass_title">Compass</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">Morse</string>
+    <string name="str_morse_your_text">Your Text</string>
+    <string name="str_morse_hint_your_text">Enter your text here</string>
+    <string name="str_morse_code_text">Morse Code</string>
+    <!-- Skin -->
+    <string name="str_skin_title">Skin</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">Remove Ads.</string>
+    <string name="str_pro_limited_offer">Limited offer for you:</string>
+    <string name="str_pro_sale_off">50% OFF</string>
+    <!-- Settings -->
+    <string name="str_settings_title">Settings</string>
+    <string name="str_settings_customize">Customize</string>
+    <string name="str_settings_language">Language</string>
+    <string name="str_settings_automatic_on">Automatic on</string>
+    <string name="str_settings_sound">Sound</string>
+    <string name="str_settings_support">Support</string>
+    <string name="str_settings_feedback">Feedback</string>
+    <string name="str_settings_share">Share</string>
+    <string name="str_settings_version">Version</string>
+</resources>

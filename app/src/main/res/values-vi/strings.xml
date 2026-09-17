@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--    Vietnamese (vi)-->
+<resources>
+    <!-- Color -->
+    <string name="str_color_title">Màu sắc</string>
+    <string name="str_color_brightness">độ sáng</string>
+    <string name="str_color_blink">Nhấp nháy</string>
+    <!-- Camera -->
+    <string name="str_camera_title">Máy ảnh</string>
+    <string name="str_camera_request_permission">Vui lòng cho phép quyền truy cập vào máy ảnh và bộ nhớ để sử dụng %s</string>
+    <!-- Gallery -->
+    <string name="str_gallery_title">Phòng trưng bày</string>
+    <string name="str_gallery_empty">Bạn chưa có ảnh nào</string>
+    <!-- Compass -->
+    <string name="str_compass_title">La bàn</string>
+    <!-- Morse code -->
+    <string name="str_morse_title">Morse</string>
+    <string name="str_morse_your_text">Văn bản của bạn</string>
+    <string name="str_morse_hint_your_text">Nhập văn bản của bạn ở đây</string>
+    <string name="str_morse_code_text">Mã Morse</string>
+    <!-- Skin -->
+    <string name="str_skin_title">Da</string>
+    <!-- Pro -->
+    <string name="str_pro_remove_ads">Loại bỏ các quảng cáo.</string>
+    <string name="str_pro_limited_offer">Ưu đãi giới hạn dành cho bạn:</string>
+    <string name="str_pro_sale_off">50% GIẢM GIÁ</string>
+    <!-- Settings -->
+    <string name="str_settings_title">Cài đặt</string>
+    <string name="str_settings_customize">Tùy chỉnh</string>
+    <string name="str_settings_language">Ngôn ngữ</string>
+    <string name="str_settings_automatic_on">Tự động bật</string>
+    <string name="str_settings_sound">Âm thanh</string>
+    <string name="str_settings_support">Ủng hộ</string>
+    <string name="str_settings_feedback">Nhận xét</string>
+    <string name="str_settings_share">Chia sẻ</string>
+    <string name="str_settings_version">Phiên bản</string>
+</resources>
