@@ -6,8 +6,12 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.ads.MobileAds
 import com.haohao.billing.BillingClientListener
 import com.haohao.billing.BillingHelper
@@ -36,9 +40,19 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val barColor = getColor(R.color.color_app)
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(barColor),
+            navigationBarStyle = SystemBarStyle.dark(barColor),
+        )
         // Handle the splash screen transition.
         installSplashScreen()
         setContentView(R.layout.activity_splash)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
 
         initBilling()
         createTimer()
