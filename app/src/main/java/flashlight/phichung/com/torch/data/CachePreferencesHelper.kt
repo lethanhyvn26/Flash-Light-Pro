@@ -23,10 +23,14 @@ open class CachePreferencesHelper @Inject constructor(context: Context) {
 
     private val gson = Gson()
 
+    // security-crypto 1.1.0 deprecates these types. They are still the only API that
+    // reads the encrypted file already on disk, so existing settings stay readable.
+    @Suppress("DEPRECATION")
     var masterKey: MasterKey = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .build()
 
+    @Suppress("DEPRECATION")
     var preferences: SharedPreferences = EncryptedSharedPreferences.create(
         context,
         PREF_PACKAGE_NAME,
