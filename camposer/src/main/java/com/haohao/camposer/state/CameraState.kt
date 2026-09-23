@@ -7,11 +7,9 @@ import android.content.ContentValues
 import android.content.Context
 import android.hardware.camera2.CameraManager
 import android.net.Uri
-import android.os.Build
 import android.os.Build.VERSION_CODES
 import android.provider.MediaStore
 import android.util.Log
-import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import androidx.annotation.VisibleForTesting
@@ -338,8 +336,7 @@ class CameraState(context: Context) {
      * Return if video is supported.
      * */
 
-    @ChecksSdkIntAtLeast(VERSION_CODES.N)
-    var isVideoSupported: Boolean = Build.VERSION.SDK_INT >= VERSION_CODES.N
+    var isVideoSupported: Boolean = true
 
     /**
      * Return true if it's recording.
@@ -375,7 +372,7 @@ class CameraState(context: Context) {
     ) {
         with(controller) {
             clearImageAnalysisAnalyzer()
-            if (Build.VERSION.SDK_INT >= VERSION_CODES.N && captureMode == CaptureMode.Video) {
+            if (captureMode == CaptureMode.Video) {
                 return
             }
 
@@ -463,7 +460,6 @@ class CameraState(context: Context) {
      * @param fileOutputOptions file output options where the video will be saved
      * @param onResult Callback called when [VideoCaptureResult] is ready
      * */
-    @RequiresApi(VERSION_CODES.N)
     @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     fun startRecording(
         fileOutputOptions: FileOutputOptions,
@@ -506,7 +502,6 @@ class CameraState(context: Context) {
      *  @param mediaStoreOutputOptions media store output options to the video to be saved.
      *  @param onResult Callback called when [VideoCaptureResult] is ready
      *  */
-    @RequiresApi(VERSION_CODES.N)
     @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     fun startRecording(
         mediaStoreOutputOptions: MediaStoreOutputOptions,
@@ -521,7 +516,6 @@ class CameraState(context: Context) {
         )
     }
 
-    @RequiresApi(VERSION_CODES.N)
     private fun getConsumerEvent(
         onResult: (VideoCaptureResult) -> Unit
     ): Consumer<VideoRecordEvent> = Consumer<VideoRecordEvent> { event ->
@@ -546,7 +540,6 @@ class CameraState(context: Context) {
      * @param onRecordBuild lambda to retrieve record controller
      * @param onError Callback called when thrown error
      * */
-    @RequiresApi(VERSION_CODES.M)
     private fun prepareRecording(
         onError: (VideoCaptureResult.Error) -> Unit,
         onRecordBuild: () -> Recording,
@@ -571,7 +564,6 @@ class CameraState(context: Context) {
     /**
      * Stop recording camera.
      * */
-    @RequiresApi(VERSION_CODES.M)
     fun stopRecording() {
         Log.i(TAG, "Stop recording")
         recordController?.stop()?.also {
@@ -579,19 +571,16 @@ class CameraState(context: Context) {
         }
     }
 
-    @RequiresApi(VERSION_CODES.M)
     fun pauseRecording() {
         Log.i(TAG, "Pause recording")
         recordController?.pause()
     }
 
-    @RequiresApi(VERSION_CODES.M)
     fun resumeRecording() {
         Log.i(TAG, "Resume recording")
         recordController?.resume()
     }
 
-    @RequiresApi(VERSION_CODES.M)
     fun muteRecording(muted: Boolean) {
         recordController?.mute(muted)
     }
@@ -615,7 +604,6 @@ class CameraState(context: Context) {
     /**
      * Toggle recording camera.
      * */
-    @RequiresApi(VERSION_CODES.N)
     @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     fun toggleRecording(
         mediaStoreOutputOptions: MediaStoreOutputOptions,
@@ -631,7 +619,6 @@ class CameraState(context: Context) {
     /**
      * Toggle recording camera.
      * */
-    @RequiresApi(VERSION_CODES.N)
     @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     fun toggleRecording(
         fileOutputOptions: FileOutputOptions,

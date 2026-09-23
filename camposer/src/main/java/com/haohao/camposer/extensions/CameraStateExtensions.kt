@@ -63,7 +63,6 @@ suspend fun CameraState.toggleRecording(
 /**
  * Transform toggle recording content values options to suspend function
  * */
-@RequiresApi(Build.VERSION_CODES.N)
 @RequiresPermission(Manifest.permission.RECORD_AUDIO)
 suspend fun CameraState.toggleRecording(
     mediaStoreOutputOptions: MediaStoreOutputOptions,
