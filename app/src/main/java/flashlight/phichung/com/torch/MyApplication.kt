@@ -4,9 +4,8 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -31,7 +30,7 @@ import java.util.Date
 import javax.inject.Inject
 
 @HiltAndroidApp
-class MyApplication : Application(), Application.ActivityLifecycleCallbacks, LifecycleObserver {
+class MyApplication : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecycleObserver {
 
     companion object {
 
@@ -48,7 +47,7 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks, Lif
     override fun onCreate() {
         instance = this
 
-        super.onCreate()
+        super<Application>.onCreate()
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
@@ -90,13 +89,10 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks, Lif
         }
     }
 
-    /** LifecycleObserver method that shows the app open ad when the app moves to foreground. */
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onMoveToForeground() {
-        // Show the ad (if available) when the app moves to foreground.
+    /** Shows the app open ad when the app moves to the foreground. */
+    override fun onStart(owner: LifecycleOwner) {
         currentActivity?.let {
-
-            if (currentActivity !is SplashActivity) {   // not splash screen then call showAdIfAvailable
+            if (it !is SplashActivity) {
                 appOpenAdManager.showAdIfAvailable(it)
             }
         }
