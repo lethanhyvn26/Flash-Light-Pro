@@ -1,5 +1,6 @@
 package flashlight.phichung.com.torch.ui.components
 
+import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.BorderStroke
@@ -16,7 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -119,10 +120,7 @@ fun AdmobBanner(modifier: Modifier = Modifier, cachePreferencesHelper: CachePref
     val adWidth = LocalConfiguration.current.screenWidthDp
     val context = LocalContext.current
 
-    val adSize = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
-        context,
-        adWidth
-    )
+    val adSize = anchoredBannerSize(context, adWidth)
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -177,7 +175,7 @@ fun TopAppBarApp(
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(Icons.Filled.KeyboardArrowLeft, null, tint = IconWhiteColor)
+                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, null, tint = IconWhiteColor)
                     }
                 }, colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary
@@ -192,3 +190,8 @@ fun TopAppBarApp(
 
         )
 }
+
+// Large anchored banners are taller. Keep the current-orientation size so the slot does not grow.
+@Suppress("DEPRECATION")
+private fun anchoredBannerSize(context: Context, width: Int): AdSize =
+    AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, width)

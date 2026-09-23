@@ -45,7 +45,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import flashlight.phichung.com.torch.R
 import flashlight.phichung.com.torch.ads.AdmobHelp
 import flashlight.phichung.com.torch.data.model.Skin
