@@ -3,4 +3,6 @@
     <string name="str_select_language">भाषा का चयन करें</string>
     <string name="str_find">ढूंढें</string>
 
+    <string name="cd_close">बंद करें</string>
+    <string name="cd_clear_search">खोज साफ़ करें</string>
 </resources>

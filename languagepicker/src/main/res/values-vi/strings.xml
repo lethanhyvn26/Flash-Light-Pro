@@ -3,4 +3,6 @@
     <string name="str_select_language">Chọn ngôn ngữ</string>
     <string name="str_find">Tìm kiếm</string>
 
+    <string name="cd_close">Đóng</string>
+    <string name="cd_clear_search">Xóa tìm kiếm</string>
 </resources>

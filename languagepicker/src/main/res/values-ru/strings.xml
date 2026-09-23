@@ -3,4 +3,6 @@
     <string name="str_select_language">Выбрать язык</string>
     <string name="str_find">Найти</string>
 
+    <string name="cd_close">Закрыть</string>
+    <string name="cd_clear_search">Очистить поиск</string>
 </resources>

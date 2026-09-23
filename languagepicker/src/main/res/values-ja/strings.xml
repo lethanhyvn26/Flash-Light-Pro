@@ -3,4 +3,6 @@
     <string name="str_select_language">言語を選択</string>
     <string name="str_find">検索</string>
 
+    <string name="cd_close">閉じる</string>
+    <string name="cd_clear_search">検索をクリア</string>
 </resources>

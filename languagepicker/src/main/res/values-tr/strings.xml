@@ -3,4 +3,6 @@
     <string name="str_select_language">Dil Seç</string>
     <string name="str_find">Bul</string>
 
+    <string name="cd_close">Kapat</string>
+    <string name="cd_clear_search">Aramayı temizle</string>
 </resources>

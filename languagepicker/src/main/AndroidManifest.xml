@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <application android:localeConfig="@xml/locales_config" tools:targetApi="tiramisu">
+    <application
+        android:localeConfig="@xml/locales_config"
+        android:supportsRtl="true"
+        tools:targetApi="tiramisu">
 
 
 

@@ -2,4 +2,6 @@
 
     <string name="str_select_language">Select Language</string>
     <string name="str_find">Find</string>
+    <string name="cd_close">Close</string>
+    <string name="cd_clear_search">Clear search</string>
 </resources>

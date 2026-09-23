@@ -3,4 +3,6 @@
     <string name="str_select_language">Seleziona lingua</string>
     <string name="str_find">Trova</string>
 
+    <string name="cd_close">Chiudi</string>
+    <string name="cd_clear_search">Cancella ricerca</string>
 </resources>

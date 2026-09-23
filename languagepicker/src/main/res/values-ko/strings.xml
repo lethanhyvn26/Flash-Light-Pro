@@ -3,4 +3,6 @@
     <string name="str_select_language">언어 선택</string>
     <string name="str_find">찾기</string>
 
+    <string name="cd_close">닫기</string>
+    <string name="cd_clear_search">검색 지우기</string>
 </resources>
