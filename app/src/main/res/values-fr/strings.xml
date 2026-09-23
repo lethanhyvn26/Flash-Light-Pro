@@ -23,7 +23,7 @@
     <!-- Pro -->
     <string name="str_pro_remove_ads">Supprimez la pub.</string>
     <string name="str_pro_limited_offer">Offre limitée pour vous :</string>
-    <string name="str_pro_sale_off">50% DE RÉDUCTION</string>
+    <string name="str_pro_sale_off">50%% DE RÉDUCTION</string>
     <!-- Settings -->
     <string name="str_settings_title">Paramètres</string>
     <string name="str_settings_customize">Personnaliser</string>

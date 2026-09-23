@@ -23,7 +23,7 @@
     <!-- Pro -->
     <string name="str_pro_remove_ads">広告を削除。</string>
     <string name="str_pro_limited_offer">あなたのための限定オファー:</string>
-    <string name="str_pro_sale_off">50%オフ</string>
+    <string name="str_pro_sale_off">50%%オフ</string>
     <!-- Settings -->
     <string name="str_settings_title">設定</string>
     <string name="str_settings_customize">カスタマイズ</string>

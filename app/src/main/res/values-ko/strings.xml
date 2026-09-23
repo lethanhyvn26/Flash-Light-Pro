@@ -23,7 +23,7 @@
     <!-- Pro -->
     <string name="str_pro_remove_ads">광고를 제거하다.</string>
     <string name="str_pro_limited_offer">당신을 위한 한정 제안:</string>
-    <string name="str_pro_sale_off">50% 할인</string>
+    <string name="str_pro_sale_off">50%% 할인</string>
     <!-- Settings -->
     <string name="str_settings_title">설정</string>
     <string name="str_settings_customize">사용자 정의</string>
