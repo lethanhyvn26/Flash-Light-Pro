@@ -15,7 +15,11 @@
 
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        ...
+        <!-- API 33+ splash theme inherits DeviceDefault, which shows the activity title. -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <!-- Set a white background behind the splash screen icon. -->
         <item name="windowSplashScreenIconBackgroundColor">#313035</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>

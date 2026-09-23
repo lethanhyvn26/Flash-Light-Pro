@@ -40,7 +40,10 @@ class SplashActivity : AppCompatActivity() {
     lateinit var cachePreferencesHelper: CachePreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Must run before super.onCreate so the window is created with the no-title theme.
+        installSplashScreen()
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Splash does not navigate back.
@@ -51,8 +54,6 @@ class SplashActivity : AppCompatActivity() {
             statusBarStyle = SystemBarStyle.dark(barColor),
             navigationBarStyle = SystemBarStyle.dark(barColor),
         )
-        // Handle the splash screen transition.
-        installSplashScreen()
         setContentView(R.layout.activity_splash)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { view, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
