@@ -2,46 +2,53 @@ package com.haohao.camposer.state
 
 import android.util.Size
 import androidx.camera.core.AspectRatio
-import androidx.camera.view.CameraController.OutputSize
+import androidx.camera.core.resolutionselector.AspectRatioStrategy
+import androidx.camera.core.resolutionselector.ResolutionSelector
+import androidx.camera.core.resolutionselector.ResolutionStrategy
 
 /**
- * Image Analysis target size is used to target the size of image analysis, accepting [AspectRatio]
- * or [Size].
- * */
+ * Image analysis / capture target size, accepting [AspectRatio] or [Size].
+ * Mapped onto CameraX [ResolutionSelector].
+ */
 data class ImageTargetSize(
-    private var aspectRatio: Int? = null,
-    private var size: Size? = null,
-    private var outputSize: OutputSize? = null
+    private val aspectRatio: Int? = null,
+    private val size: Size? = null,
 ) {
 
     /**
-     * Image analysis target size using [AspectRatio].
-     * */
+     * Target size using [AspectRatio].
+     */
     constructor(@AspectRatio.Ratio aspectRatio: Int?) : this(
         aspectRatio = aspectRatio,
         size = null,
-        outputSize = null
     )
 
     /**
-     * Image analysis target size using [Size].
-     * */
+     * Target size using [Size].
+     */
     constructor(size: Size?) : this(
         aspectRatio = null,
         size = size,
-        outputSize = null
     )
 
-    /**
-     * Internal constructor to use default [OutputSize] from cameraX.
-     * */
-    internal constructor(outputSize: OutputSize?) : this(
-        aspectRatio = null,
-        size = null,
-        outputSize = outputSize
-    )
-
-    internal fun toOutputSize(): OutputSize? {
-        return outputSize ?: aspectRatio?.let { OutputSize(it) } ?: size?.let { OutputSize(it) }
+    internal fun toResolutionSelector(): ResolutionSelector? {
+        val ratio = aspectRatio
+        val target = size
+        if (ratio == null && target == null) return null
+        return ResolutionSelector.Builder().apply {
+            if (ratio != null) {
+                setAspectRatioStrategy(
+                    AspectRatioStrategy(ratio, AspectRatioStrategy.FALLBACK_RULE_AUTO),
+                )
+            }
+            if (target != null) {
+                setResolutionStrategy(
+                    ResolutionStrategy(
+                        target,
+                        ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER,
+                    ),
+                )
+            }
+        }.build()
     }
 }

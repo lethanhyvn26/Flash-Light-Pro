@@ -29,8 +29,6 @@ import androidx.camera.video.QualitySelector
 import androidx.camera.video.Recording
 import androidx.camera.video.VideoRecordEvent
 import androidx.camera.view.CameraController.IMAGE_ANALYSIS
-import androidx.camera.view.CameraController.OutputSize
-import androidx.camera.view.CameraController.OutputSize.UNASSIGNED_ASPECT_RATIO
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.video.AudioConfig
 import androidx.compose.runtime.Stable
@@ -220,11 +218,14 @@ class CameraState(context: Context) {
     /**
      * Set image capture target size on camera
      * */
+    private var imageCaptureTargetSizeState: ImageTargetSize? = null
+
     internal var imageCaptureTargetSize: ImageTargetSize?
-        get() = controller.imageCaptureTargetSize.toImageTargetSize()
+        get() = imageCaptureTargetSizeState
         set(value) {
-            if (value != imageCaptureTargetSize) {
-                controller.imageCaptureTargetSize = value?.toOutputSize()
+            if (value != imageCaptureTargetSizeState) {
+                imageCaptureTargetSizeState = value
+                controller.imageCaptureResolutionSelector = value?.toResolutionSelector()
             }
         }
 
@@ -277,11 +278,14 @@ class CameraState(context: Context) {
      * Image analysis target size, use [rememberImageAnalyzer] to set value.
      * @see rememberImageAnalyzer
      * */
-    internal var imageAnalysisTargetSize: OutputSize?
-        get() = controller.imageAnalysisTargetSize
+    private var imageAnalysisTargetSizeState: ImageTargetSize? = null
+
+    internal var imageAnalysisTargetSize: ImageTargetSize?
+        get() = imageAnalysisTargetSizeState
         set(value) {
-            if (imageAnalysisTargetSize != value) {
-                controller.imageAnalysisTargetSize = value
+            if (value != imageAnalysisTargetSizeState) {
+                imageAnalysisTargetSizeState = value
+                controller.imageAnalysisResolutionSelector = value?.toResolutionSelector()
             }
         }
 
@@ -368,13 +372,15 @@ class CameraState(context: Context) {
 
     private fun updateImageAnalyzer(
         analyzer: ImageAnalysis.Analyzer? = imageAnalyzer
-    ) = with(controller) {
-        clearImageAnalysisAnalyzer()
-        if (Build.VERSION.SDK_INT >= VERSION_CODES.N && captureMode == CaptureMode.Video) {
-            return
-        }
+    ) {
+        with(controller) {
+            clearImageAnalysisAnalyzer()
+            if (Build.VERSION.SDK_INT >= VERSION_CODES.N && captureMode == CaptureMode.Video) {
+                return
+            }
 
-        setImageAnalysisAnalyzer(mainExecutor, analyzer ?: return)
+            setImageAnalysisAnalyzer(mainExecutor, analyzer ?: return)
+        }
     }
 
     private fun startExposure() {
@@ -727,15 +733,5 @@ class CameraState(context: Context) {
         private val TAG = this::class.java.name
         private const val INITIAL_ZOOM_VALUE = 1F
         private const val INITIAL_EXPOSURE_VALUE = 0
-    }
-}
-
-private fun OutputSize?.toImageTargetSize(): ImageTargetSize? {
-    return this?.let {
-        if (it.aspectRatio != UNASSIGNED_ASPECT_RATIO) {
-            ImageTargetSize(aspectRatio = it.aspectRatio)
-        } else {
-            ImageTargetSize(size = it.resolution)
-        }
     }
 }

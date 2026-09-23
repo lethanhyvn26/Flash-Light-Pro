@@ -36,7 +36,7 @@ class ImageAnalyzer(
         imageAnalysisImageQueueDepth: Int,
     ) = with(cameraState) {
         this.imageAnalysisBackpressureStrategy = imageAnalysisBackpressureStrategy.strategy
-        this.imageAnalysisTargetSize = imageAnalysisTargetSize?.toOutputSize()
+        this.imageAnalysisTargetSize = imageAnalysisTargetSize
         this.imageAnalysisImageQueueDepth = imageAnalysisImageQueueDepth
     }
 
@@ -47,7 +47,7 @@ class ImageAnalyzer(
         imageAnalysisBackpressureStrategy: ImageAnalysisBackpressureStrategy = ImageAnalysisBackpressureStrategy.find(
             cameraState.imageAnalysisBackpressureStrategy
         ),
-        imageAnalysisTargetSize: ImageTargetSize? = ImageTargetSize(cameraState.imageAnalysisTargetSize),
+        imageAnalysisTargetSize: ImageTargetSize? = cameraState.imageAnalysisTargetSize,
         imageAnalysisImageQueueDepth: Int = cameraState.imageAnalysisImageQueueDepth,
         analyzer: ImageAnalysis.Analyzer = this.analyzer,
     ) {

@@ -64,7 +64,7 @@ fun CameraState.rememberTorch(
 @Composable
 fun CameraState.rememberImageAnalyzer(
     imageAnalysisBackpressureStrategy: ImageAnalysisBackpressureStrategy = ImageAnalysisBackpressureStrategy.KeepOnlyLatest,
-    imageAnalysisTargetSize: ImageTargetSize? = ImageTargetSize(this.imageAnalysisTargetSize),
+    imageAnalysisTargetSize: ImageTargetSize? = this.imageAnalysisTargetSize,
     imageAnalysisImageQueueDepth: Int = this.imageAnalysisImageQueueDepth,
     analyze: ImageAnalysis.Analyzer,
 ): ImageAnalyzer = remember(this) {
