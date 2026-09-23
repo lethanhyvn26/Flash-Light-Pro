@@ -1,35 +1,26 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
 }
-
-
-
 
 android {
     namespace = "com.haohao.billing"
-    compileSdk = 34
+    compileSdk = 37
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-
 }
 
-
-val billingLibraryVersion = rootProject.extra.get("billingLibraryVersion") as String
-val appcompatX = rootProject.extra.get("appcompatX") as String
-
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
+}
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:$appcompatX")
-    implementation("com.android.billingclient:billing:$billingLibraryVersion")
-
+    implementation(libs.androidx.appcompat)
+    implementation(libs.billing)
 }
