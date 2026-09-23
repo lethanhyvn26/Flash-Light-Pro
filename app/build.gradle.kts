@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "flashlight.phichung.com.torch"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 6
         versionName = "1.1.6"
 
