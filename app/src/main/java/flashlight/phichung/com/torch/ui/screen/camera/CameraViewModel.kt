@@ -33,7 +33,7 @@ class CameraViewModel @Inject constructor(
     val uiState: StateFlow<CameraUiState> get() = _uiState
 
 
-    private lateinit var user: User
+    private var user: User = User.Default
 
 
     init {

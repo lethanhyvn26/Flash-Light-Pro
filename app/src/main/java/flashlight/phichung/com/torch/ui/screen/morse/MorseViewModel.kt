@@ -59,7 +59,7 @@ class MorseViewModel @Inject constructor(
     val uiIndexCharacterInputState: StateFlow<Int> = _uiIndexCharacterInputState.asStateFlow()
 
 
-    private lateinit var skinCurrent: Skin
+    private var skinCurrent: Skin = getSkinCurrent()
 
 
     val combinedFlow: Flow<AnnotatedString> =
@@ -87,7 +87,7 @@ class MorseViewModel @Inject constructor(
                         SoundTypes.UNDEFINED -> "*"
                     }
                     withStyle(style = androidx.compose.ui.text.SpanStyle(color = color)) {
-                        append(char.toString())
+                        append(char)
                     }
 
 
@@ -117,9 +117,6 @@ class MorseViewModel @Inject constructor(
                 }
 
             }
-        skinCurrent = getSkinCurrent()
-
-
         val cameraManager =
             MyApplication.instance.getSystemService(Context.CAMERA_SERVICE) as CameraManager
         camManager = cameraManager
