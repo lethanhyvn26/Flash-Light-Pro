@@ -3,6 +3,9 @@ package flashlight.phichung.com.torch.ui.screen.morse
 
 import android.content.Context
 import android.hardware.camera2.CameraManager
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
@@ -34,7 +37,7 @@ class MorseViewModel @Inject constructor(
     contextProvider: CoroutineContextProvider,
     private val preferencesHelper: CachePreferencesHelper,
 
-    ) : BaseViewModel(contextProvider, preferencesHelper) {
+    ) : BaseViewModel(contextProvider, preferencesHelper), DefaultLifecycleObserver {
 
 
     var camManager: CameraManager? = null
@@ -101,6 +104,7 @@ class MorseViewModel @Inject constructor(
 
 
     init {
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
         val generatorSettings = DitDahGeneratorSettings(MyApplication.instance)
         mSoundPlayer = DitDahSoundStream(generatorSettings)
@@ -139,6 +143,18 @@ class MorseViewModel @Inject constructor(
 
         camManager?.registerTorchCallback(torchCallback!!, null)
 
+    }
+
+    override fun onStop(owner: LifecycleOwner) {
+        // Android 17 blocks background audio unless it runs in a foreground service.
+        // Morse is a screen-level signal, so stop it instead of posting a notification.
+        if (_uiPlayState.value) {
+            setValuePlayState(false)
+        }
+        try {
+            cameraId?.let { camManager?.setTorchMode(it, false) }
+        } catch (_: Exception) {
+        }
     }
 
     fun setValuePlayState(playState: Boolean) {
@@ -191,6 +207,7 @@ class MorseViewModel @Inject constructor(
 
 
     fun onDispose() {
+        ProcessLifecycleOwner.get().lifecycle.removeObserver(this)
         setValuePlayState(false)
 
         try {
