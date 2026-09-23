@@ -1,5 +1,6 @@
 package flashlight.phichung.com.torch.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.*
@@ -101,6 +102,7 @@ class ZoomImageView : AppCompatImageView {
         sharedConstructing(context)
     }
 
+    @SuppressLint("ClickableViewAccessibility") // Single tap already calls performClick() in GestureListener.
     private fun sharedConstructing(context: Context) {
         super.setClickable(true)
         this.contextM = context
@@ -1050,6 +1052,7 @@ class ZoomImageView : AppCompatImageView {
         // Remember last point position for dragging
         //
         private val last = PointF()
+        @SuppressLint("ClickableViewAccessibility") // Single tap already calls performClick() in GestureListener.
         override fun onTouch(
             v: View,
             event: MotionEvent
