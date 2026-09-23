@@ -33,7 +33,6 @@ abstract class BaseViewModel(
     fun getCachePreferencesHelper() = preferencesHelper
 
     public override fun onCleared() {
-        super.onCleared()
         job.cancel()
     }
 }
