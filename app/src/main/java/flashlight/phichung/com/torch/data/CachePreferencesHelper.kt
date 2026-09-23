@@ -2,6 +2,7 @@ package flashlight.phichung.com.torch.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.google.gson.Gson
@@ -46,12 +47,12 @@ open class CachePreferencesHelper @Inject constructor(context: Context) {
 
     var languageApp: String
         get() = preferences.getString(PREF_KEY_LANGUAGE_APP, "").toString()
-        set(language) = preferences.edit().putString(PREF_KEY_LANGUAGE_APP, language).apply()
+        set(language) = preferences.edit { putString(PREF_KEY_LANGUAGE_APP, language) }
 
 
     var stateSound: Boolean
         get() = preferences.getBoolean(PREF_KEY_SOUND, true)
-        set(sound) = preferences.edit().putBoolean(PREF_KEY_SOUND, sound).apply()
+        set(sound) = preferences.edit { putBoolean(PREF_KEY_SOUND, sound) }
 
 
     var skin: Skin?
@@ -61,22 +62,22 @@ open class CachePreferencesHelper @Inject constructor(context: Context) {
         }
         set(value) {
             val json = gson.toJson(value)
-            preferences.edit().putString(PREF_KEY_SKIN, json).apply()
+            preferences.edit { putString(PREF_KEY_SKIN, json) }
         }
 
 
     var stateAutomaticOn: Boolean
         get() = preferences.getBoolean(PREF_KEY_AUTOMATIC_ON, true)
-        set(isOn) = preferences.edit().putBoolean(PREF_KEY_AUTOMATIC_ON, isOn).apply()
+        set(isOn) = preferences.edit { putBoolean(PREF_KEY_AUTOMATIC_ON, isOn) }
 
 
     var stateRemoveAds: Boolean  // true => remove ads (paid)
         get() = preferences.getBoolean(PREF_KEY_REMOVE_ADS, false)
-        set(sound) = preferences.edit().putBoolean(PREF_KEY_REMOVE_ADS, sound).apply()
+        set(sound) = preferences.edit { putBoolean(PREF_KEY_REMOVE_ADS, sound) }
 
 
     fun clearCache() {
-        preferences.edit().clear().apply()
+        preferences.edit { clear() }
     }
 
 

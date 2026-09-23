@@ -3,7 +3,7 @@ package com.haohao.billing
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import androidx.core.net.toUri
 import android.util.Log
 import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
@@ -213,7 +213,7 @@ class BillingHelper(private val context: Context) {
                 if (productInfo.productType == BillingClient.ProductType.SUBS && productInfo.subscriptionOfferDetails != null) {
                     val offerToken =
                         getOfferToken(productInfo.subscriptionOfferDetails, productId, offerId)
-                    if (offerToken.trim { it <= ' ' } != "") {
+                    if (offerToken.trim() != "") {
                         productDetailsParamsList.add(
                             BillingFlowParams.ProductDetailsParams.newBuilder()
                                 .setProductDetails(productInfo).setOfferToken(offerToken).build()
@@ -262,7 +262,7 @@ class BillingHelper(private val context: Context) {
                         val offerToken = getOfferToken(
                             productInfo.subscriptionOfferDetails, updateProductId, updateOfferId
                         )
-                        if (offerToken.trim { it <= ' ' } != "") {
+                        if (offerToken.trim() != "") {
                             productDetailsParamsList.add(
                                 BillingFlowParams.ProductDetailsParams.newBuilder()
                                     .setProductDetails(productInfo).setOfferToken(offerToken)
@@ -330,7 +330,7 @@ class BillingHelper(private val context: Context) {
         for (product in offerList!!) {
             if (product.offerId != null && product.offerId == offerId && product.basePlanId == productId) {
                 return product.offerToken
-            } else if (offerId.trim { it <= ' ' } == "" && product.basePlanId == productId && product.offerId == null) {
+            } else if (offerId.trim() == "" && product.basePlanId == productId && product.offerId == null) {
                 // case when no offer in base plan
                 return product.offerToken
             }
@@ -386,7 +386,7 @@ class BillingHelper(private val context: Context) {
                 "http://play.google.com/store/account/subscriptions?package=" + activity.packageName + "&sku=" + SubId
             val intent = Intent()
             intent.action = Intent.ACTION_VIEW
-            intent.data = Uri.parse(subscriptionUrl)
+            intent.data = subscriptionUrl.toUri()
             activity.startActivity(intent)
             activity.finish()
         } catch (e: Exception) {

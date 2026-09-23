@@ -5,7 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.location.Location
-import android.net.Uri
+import androidx.core.net.toUri
 import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -93,7 +93,7 @@ fun Activity.feedback() {
     }
 
     val intent = Intent(Intent.ACTION_SENDTO)
-    intent.data = Uri.parse("mailto:") // only email apps should handle this
+    intent.data = "mailto:".toUri()
     intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.email_support)))
     intent.putExtra(
         Intent.EXTRA_SUBJECT,
