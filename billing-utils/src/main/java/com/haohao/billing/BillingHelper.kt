@@ -111,7 +111,7 @@ class BillingHelper(private val context: Context) {
                         billingEventListener?.onBillingError(ErrorType.ITEM_NOT_OWNED)
                     }
 
-                    BillingClient.BillingResponseCode.SERVICE_DISCONNECTED, BillingClient.BillingResponseCode.SERVICE_TIMEOUT -> {
+                    BillingClient.BillingResponseCode.SERVICE_DISCONNECTED, serviceTimeoutCode -> {
                         Log("Initialization error: service disconnected/timeout. Trying to reconnect...")
                         billingEventListener?.onBillingError(ErrorType.SERVICE_DISCONNECTED)
                     }
@@ -284,7 +284,7 @@ class BillingHelper(private val context: Context) {
                         .setSubscriptionUpdateParams(
                             BillingFlowParams.SubscriptionUpdateParams.newBuilder()
                                 .setOldPurchaseToken(oldToken)
-                                .setSubscriptionReplacementMode(policy)
+                                .withReplacementMode(policy)
                                 .build()
                         ).build()
                     billingClient!!.launchBillingFlow(activity, billingFlowParams)
@@ -851,4 +851,15 @@ class BillingHelper(private val context: Context) {
         billingClientListener = billingClientListeners
         return this
     }
+
+    // Billing 9.1.0 still reports this code and has no replacement constant.
+    @Suppress("DEPRECATION")
+    private val serviceTimeoutCode: Int
+        get() = BillingClient.BillingResponseCode.SERVICE_TIMEOUT
+
+    // The int overload is the only replacement-mode API in Billing 9.1.0.
+    @Suppress("DEPRECATION")
+    private fun BillingFlowParams.SubscriptionUpdateParams.Builder.withReplacementMode(
+        policy: Int,
+    ): BillingFlowParams.SubscriptionUpdateParams.Builder = setSubscriptionReplacementMode(policy)
 }
