@@ -143,7 +143,7 @@ private fun GallerySection(imageFiles: List<File>, onPreviewClick: (String) -> U
                     .fillMaxSize()
                     .padding(4.dp)
                     .clip(RoundedCornerShape(6.dp))
-                    .animateItemPlacement()
+                    .animateItem()
                     .aspectRatio(1F)
                     .clickable(onClick = {
                         AdmobHelp.instance?.showInterstitialAd(
