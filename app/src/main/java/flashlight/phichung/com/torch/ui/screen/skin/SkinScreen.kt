@@ -29,7 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
+import androidx.activity.compose.LocalActivity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -128,7 +128,7 @@ fun SkinScreen(
 
 @Composable
 fun GridItem(skin: Skin, onClick: () -> Unit) {
-    val activity = LocalContext.current as AppCompatActivity
+    val activity = LocalActivity.current as AppCompatActivity
 
     Box(
         modifier = Modifier

@@ -33,7 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.activity.compose.LocalActivity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -97,7 +97,7 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
     ) {
         var stateSound by remember { mutableStateOf(viewModel.getSoundState()) }
         var stateAutomaticFlashMode by remember { mutableStateOf(viewModel.getAutomaticOnState()) }
-        val activity = LocalContext.current as AppCompatActivity
+        val activity = LocalActivity.current as AppCompatActivity
        val googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(MyApplication.instance)
         LazyColumn(modifier = Modifier
             .padding(horizontal = 15.dp)
@@ -126,13 +126,13 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
                                             allowSearch = false,
                                             onCountryClickListener = { languageModel ->
                                                 val langChange = languageModel?.code ?: ""
-                                                Timber.tag("HAOHAO").i("langChange :  " + langChange)
+                                                Timber.tag("HAOHAO").i("langChange : %s", langChange)
                                                 viewModel.setLanguageApp(langChange)
                                                 val index = localesLanguageApp.indexOfFirst {
                                                     it.toLanguageTag().lowercase() == langChange.lowercase()
                                                 }
                                                 if (index != -1) {
-                                                    Timber.tag("HAOHAO").i("index :  " + index)
+                                                    Timber.tag("HAOHAO").i("index : %s", index)
                                                     setApplicationLocales(
                                                         localesLanguageApp[index].language.toString()
                                                             .lowercase()

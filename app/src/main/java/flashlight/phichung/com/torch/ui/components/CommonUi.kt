@@ -1,6 +1,7 @@
 package flashlight.phichung.com.torch.ui.components
 
 import android.content.Context
+import androidx.activity.compose.LocalActivity
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.BorderStroke
@@ -33,8 +34,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -66,7 +68,7 @@ fun ButtonChild(
     clickAction: () -> Unit = {}
 ) {
 
-    val activity = LocalContext.current as AppCompatActivity
+    val activity = LocalActivity.current as AppCompatActivity
     Box(
         modifier = Modifier
             .size(50.dp)
@@ -117,7 +119,9 @@ fun NavigationIcon(
 
 @Composable
 fun AdmobBanner(modifier: Modifier = Modifier, cachePreferencesHelper: CachePreferencesHelper) {
-    val adWidth = LocalConfiguration.current.screenWidthDp
+    val adWidth = (
+        LocalWindowInfo.current.containerSize.width / LocalDensity.current.density
+        ).toInt()
     val context = LocalContext.current
 
     val adSize = anchoredBannerSize(context, adWidth)

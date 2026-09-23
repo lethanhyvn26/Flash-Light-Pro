@@ -40,7 +40,7 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
+import androidx.activity.compose.LocalActivity
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -199,7 +199,7 @@ fun SliderFlash(
     val uiBlinkState by viewModel.uiFlashFloatBlinkState.collectAsState()
     var sliderPosition by remember { mutableFloatStateOf(uiBlinkState) }
     val uiPowerState by viewModel.uiPowerState.collectAsState()
-    val activity = LocalContext.current as AppCompatActivity
+    val activity = LocalActivity.current as AppCompatActivity
 
 //    val uiIsBlinkState by viewModel.uiIsBlinkState.collectAsState()
 
@@ -322,7 +322,7 @@ fun ButtonPower(
     skinCurrent: Skin
 ) {
     val uiPowerState by viewModel.uiPowerState.collectAsState()
-    val activity = LocalContext.current as AppCompatActivity
+    val activity = LocalActivity.current as AppCompatActivity
 
 
     Box(modifier = modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {

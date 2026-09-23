@@ -32,6 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.activity.compose.LocalActivity
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -110,7 +111,7 @@ fun CameraScreenMain(
     openGalleryScreen: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    val activity = LocalContext.current as AppCompatActivity
+    val activity = LocalActivity.current as AppCompatActivity
 
     when (val result: CameraUiState = uiState) {
         is CameraUiState.Ready -> {
