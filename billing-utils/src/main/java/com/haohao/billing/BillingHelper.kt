@@ -15,8 +15,8 @@ import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchaseHistoryRecord
 import com.android.billingclient.api.PurchasesUpdatedListener
+import com.android.billingclient.api.PendingPurchasesParams
 import com.android.billingclient.api.QueryProductDetailsParams
-import com.android.billingclient.api.QueryPurchaseHistoryParams
 import com.android.billingclient.api.QueryPurchasesParams
 import com.haohao.billing.model.ErrorType
 import com.haohao.billing.model.ProductPriceInfo
@@ -124,7 +124,11 @@ class BillingHelper(private val context: Context) {
             }
             billingClient =
                 BillingClient.newBuilder(context).setListener(purchasesUpdatedListener!!)
-                    .enablePendingPurchases().build()
+                    .enablePendingPurchases(
+                        PendingPurchasesParams.newBuilder().enableOneTimeProducts().build()
+                    )
+                    .enableAutoServiceReconnection()
+                    .build()
             startConnection()
         } else {
             Log("Client already connected")
@@ -186,9 +190,9 @@ class BillingHelper(private val context: Context) {
             QueryProductDetailsParams.newBuilder().setProductList(productList).build()
 
         if (billingClient != null) {
-            billingClient!!.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, productDetailsList ->
+            billingClient!!.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, detailsResult ->
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    productDetailsList.forEach { productDetails ->
+                    detailsResult.productDetailsList.forEach { productDetails ->
                         AllProducts.add(productDetails)
                     }
                 } else {
@@ -279,7 +283,8 @@ class BillingHelper(private val context: Context) {
                         .setProductDetailsParamsList(productDetailsParamsList)
                         .setSubscriptionUpdateParams(
                             BillingFlowParams.SubscriptionUpdateParams.newBuilder()
-                                .setOldPurchaseToken(oldToken).setReplaceProrationMode(policy)
+                                .setOldPurchaseToken(oldToken)
+                                .setSubscriptionReplacementMode(policy)
                                 .build()
                         ).build()
                     billingClient!!.launchBillingFlow(activity, billingFlowParams)
@@ -418,22 +423,25 @@ class BillingHelper(private val context: Context) {
     }
 
     private suspend fun fetchActiveInAppPurchasesHistory() {
-        val params =
-            QueryPurchaseHistoryParams.newBuilder().setProductType(BillingClient.ProductType.INAPP)
-        billingClient!!.queryPurchaseHistoryAsync(params.build()) { billingResult, purchases ->
+        // queryPurchaseHistoryAsync was removed in Play Billing 8. Active INAPP
+        // entitlements now come from queryPurchasesAsync. PurchaseHistoryRecord is
+        // still the type the rest of this helper stores.
+        val params = QueryPurchasesParams.newBuilder()
+            .setProductType(BillingClient.ProductType.INAPP)
+            .build()
+        billingClient!!.queryPurchasesAsync(params) { billingResult, purchases ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                Log("in-APP History item already buy founded list size ${purchases?.size}")
-                purchases?.forEach {
-                    Log("in-APP History already buy products : ${it.products.first()}")
-                    purchasedInAppProductList.add(it)
+                Log("in-APP active item already buy founded list size ${purchases.size}")
+                purchases.forEach { purchase ->
+                    Log("in-APP already buy products : ${purchase.products.first()}")
+                    purchasedInAppProductList.add(
+                        PurchaseHistoryRecord(purchase.originalJson, purchase.signature)
+                    )
                 }
-
             } else {
-                Log("no in-APP History  item already buy")
-
+                Log("no in-APP active item already buy")
             }
             billingClientListener?.onFetchActiveInAppPurchasesHistoryDone()
-
         }
     }
 
@@ -455,10 +463,11 @@ class BillingHelper(private val context: Context) {
         if (billingClient != null) {
             Log("fetchAvailableAllInAppProducts billingClient!= null")
 
-            billingClient!!.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, productDetailsList ->
+            billingClient!!.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, detailsResult ->
 
                 Log("fetchAvailableAllInAppProducts  billingResult ${billingResult.responseCode} ${billingResult.debugMessage}")
 
+                val productDetailsList = detailsResult.productDetailsList
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     Log("in productDetailsList ${productDetailsList.size}")
                     productDetailsList.forEach { productDetails ->
