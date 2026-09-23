@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +41,11 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Splash does not navigate back.
+            }
+        })
         val barColor = getColor(R.color.color_app)
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(barColor),
@@ -164,9 +170,5 @@ class SplashActivity : AppCompatActivity() {
 
 
 
-    @SuppressLint("MissingSuperCall")
-    override fun onBackPressed() {
-
-    }
 }
 
