@@ -2,7 +2,7 @@ package flashlight.phichung.com.torch.ui.screen.preview
 
 import android.app.Activity
 import android.net.Uri
-import android.util.Log
+import timber.log.Timber
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
@@ -61,15 +61,15 @@ fun PreviewScreen(
         if (it.resultCode == Activity.RESULT_OK) {
             navController.navigateUp()
         }
-        Log.d("INTENT SENDER", "RESULT: ${it.resultCode}")
+        Timber.d("INTENT SENDER RESULT: %s", it.resultCode)
     }
 
-    Log.d("PREVIEW SCREEN", "OPA")
+    Timber.d("PREVIEW SCREEN")
 
     when (val result: PreviewUiState = uiState) {
         PreviewUiState.Initial -> {}
         PreviewUiState.Empty -> {
-            Log.d("PreviewUiState", "Empty")
+            Timber.d("PreviewUiState Empty")
 
         }
 

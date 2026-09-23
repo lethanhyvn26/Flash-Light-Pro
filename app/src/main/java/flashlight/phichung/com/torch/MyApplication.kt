@@ -25,6 +25,7 @@ import flashlight.phichung.com.torch.data.CachePreferencesHelper
 import flashlight.phichung.com.torch.ui.activity.SplashActivity
 import flashlight.phichung.com.torch.utils.ReleaseTree
 import timber.log.Timber
+import java.lang.ref.WeakReference
 import java.util.Arrays
 import java.util.Date
 import javax.inject.Inject
@@ -42,7 +43,7 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks, Def
     @Inject
     lateinit var cachePreferencesHelper: CachePreferencesHelper
 
-    private var currentActivity: Activity? = null
+    private var currentActivity = WeakReference<Activity>(null)
 
     override fun onCreate() {
         instance = this
@@ -83,7 +84,7 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks, Def
                 it.toLanguageTag().lowercase() == currentLang.lowercase()
             }
             if (index != -1) {
-                Timber.tag("HAOHAO").i("index :  " + index)
+                Timber.tag("HAOHAO").i("index : %s", index)
                 setApplicationLocales(localesLanguageApp[index].language.toString().lowercase())
             }
         }
@@ -91,7 +92,7 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks, Def
 
     /** Shows the app open ad when the app moves to the foreground. */
     override fun onStart(owner: LifecycleOwner) {
-        currentActivity?.let {
+        currentActivity.get()?.let {
             if (it !is SplashActivity) {
                 appOpenAdManager.showAdIfAvailable(it)
             }
@@ -107,7 +108,7 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks, Def
         // currentActivity only when an ad is not showing will ensure it is not an ad activity, but the
         // one that shows the ad.
         if (!appOpenAdManager.isShowingAd) {
-            currentActivity = activity
+            currentActivity = WeakReference(activity)
         }
     }
 
@@ -119,7 +120,11 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks, Def
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 
-    override fun onActivityDestroyed(activity: Activity) {}
+    override fun onActivityDestroyed(activity: Activity) {
+        if (currentActivity.get() == activity) {
+            currentActivity.clear()
+        }
+    }
 
     /**
      * Shows an app open ad.
