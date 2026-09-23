@@ -15,75 +15,77 @@ import com.google.android.ump.UserMessagingPlatform
  * This is an example and you can choose another consent management platform to capture consent.
  */
 class GoogleMobileAdsConsentManager private constructor(context: Context) {
-  private val consentInformation: ConsentInformation =
-    UserMessagingPlatform.getConsentInformation(context)
+    private val consentInformation: ConsentInformation =
+        UserMessagingPlatform.getConsentInformation(context)
 
-  /** Interface definition for a callback to be invoked when consent gathering is complete. */
-  fun interface OnConsentGatheringCompleteListener {
-    fun consentGatheringComplete(error: FormError?)
-  }
+    /** Interface definition for a callback to be invoked when consent gathering is complete. */
+    fun interface OnConsentGatheringCompleteListener {
+        fun consentGatheringComplete(error: FormError?)
+    }
 
-  /** Helper variable to determine if the app can request ads. */
-  val canRequestAds: Boolean
-    get() = consentInformation.canRequestAds()
+    /** Helper variable to determine if the app can request ads. */
+    val canRequestAds: Boolean
+        get() = consentInformation.canRequestAds()
 
-  /** Helper variable to determine if the privacy options form is required. */
-  val isPrivacyOptionsRequired: Boolean
-    get() =
-      consentInformation.privacyOptionsRequirementStatus ==
-              ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED
+    /** Helper variable to determine if the privacy options form is required. */
+    val isPrivacyOptionsRequired: Boolean
+        get() =
+            consentInformation.privacyOptionsRequirementStatus ==
+                    ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED
 
-  /**
-   * Helper method to call the UMP SDK methods to request consent information and load/show a
-   * consent form if necessary.
-   */
-  fun gatherConsent(
-    activity: Activity,
-    onConsentGatheringCompleteListener: OnConsentGatheringCompleteListener
-  ) {
-    // For testing purposes, you can force a DebugGeography of EEA or NOT_EEA.
-    val debugSettings =
-      ConsentDebugSettings.Builder(activity)
-        // .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-        // Check your logcat output for the hashed device ID e.g.
-        // "Use new ConsentDebugSettings.Builder().addTestDeviceHashedId("ABCDEF012345")" to use
-        // the debug functionality.
-        // .addTestDeviceHashedId("62cbc65f-c2c1-4d3e-a67d-e3ff9f0f18e5")
-        .build()
+    /**
+     * Helper method to call the UMP SDK methods to request consent information and load/show a
+     * consent form if necessary.
+     */
+    fun gatherConsent(
+        activity: Activity,
+        onConsentGatheringCompleteListener: OnConsentGatheringCompleteListener
+    ) {
+        // For testing purposes, you can force a DebugGeography of EEA or NOT_EEA.
+        val debugSettings =
+            ConsentDebugSettings.Builder(activity)
+                // .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+                // Check your logcat output for the hashed device ID e.g.
+                // "Use new ConsentDebugSettings.Builder().addTestDeviceHashedId("ABCDEF012345")" to use
+                // the debug functionality.
+                // .addTestDeviceHashedId("62cbc65f-c2c1-4d3e-a67d-e3ff9f0f18e5")
+                .build()
 
-    val params = ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).build()
+        val params =
+            ConsentRequestParameters.Builder().setConsentDebugSettings(debugSettings).build()
 
-    // Requesting an update to consent information should be called on every app launch.
-    consentInformation.requestConsentInfoUpdate(
-      activity,
-      params,
-      {
-        UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) { formError ->
-          // Consent has been gathered.
-          onConsentGatheringCompleteListener.consentGatheringComplete(formError)
-        }
-      },
-      { requestConsentError ->
-        onConsentGatheringCompleteListener.consentGatheringComplete(requestConsentError)
-      }
-    )
-  }
+        // Requesting an update to consent information should be called on every app launch.
+        consentInformation.requestConsentInfoUpdate(
+            activity,
+            params,
+            {
+                UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) { formError ->
+                    // Consent has been gathered.
+                    onConsentGatheringCompleteListener.consentGatheringComplete(formError)
+                }
+            },
+            { requestConsentError ->
+                onConsentGatheringCompleteListener.consentGatheringComplete(requestConsentError)
+            }
+        )
+    }
 
-  /** Helper method to call the UMP SDK method to show the privacy options form. */
-  fun showPrivacyOptionsForm(
-    activity: Activity,
-    onConsentFormDismissedListener: OnConsentFormDismissedListener
-  ) {
-    UserMessagingPlatform.showPrivacyOptionsForm(activity, onConsentFormDismissedListener)
-  }
+    /** Helper method to call the UMP SDK method to show the privacy options form. */
+    fun showPrivacyOptionsForm(
+        activity: Activity,
+        onConsentFormDismissedListener: OnConsentFormDismissedListener
+    ) {
+        UserMessagingPlatform.showPrivacyOptionsForm(activity, onConsentFormDismissedListener)
+    }
 
-  companion object {
-    @Volatile private var instance: GoogleMobileAdsConsentManager? = null
+    companion object {
+        @Volatile
+        private var instance: GoogleMobileAdsConsentManager? = null
 
-    fun getInstance(context: Context) =
-      instance
-        ?: synchronized(this) {
-          instance ?: GoogleMobileAdsConsentManager(context).also { instance = it }
-        }
-  }
+        fun getInstance(context: Context) =
+            instance
+                ?: synchronized(this) {
+                    instance ?: GoogleMobileAdsConsentManager(context).also { instance = it }
+                }
+    }
 }

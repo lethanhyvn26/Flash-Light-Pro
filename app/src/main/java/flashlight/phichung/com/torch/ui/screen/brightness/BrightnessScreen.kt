@@ -1,6 +1,7 @@
 package flashlight.phichung.com.torch.ui.screen.brightness
 
 import android.app.Activity
+import androidx.activity.compose.LocalActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -8,10 +9,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -40,7 +41,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.activity.compose.LocalActivity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -139,7 +139,11 @@ fun BrightnessScreen(
                     },
                     navigationIcon = {
                         IconButton(onClick = { navController.navigateUp() }) {
-                            Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, null, tint = IconWhiteColor)
+                            Icon(
+                                Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                                null,
+                                tint = IconWhiteColor
+                            )
                         }
                     }, colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = Color.Transparent
@@ -262,7 +266,8 @@ fun SliderBrightness(modifier: Modifier = Modifier) {
                 window?.attributes = layoutParams // Set params
             },
             onValueChangeFinished = {
-                AdmobHelp.instance?.showInterstitialAd(activity,
+                AdmobHelp.instance?.showInterstitialAd(
+                    activity,
                     object : AdmobHelp.AdCloseListener {
                         override fun onAdClosed() {
                         }
@@ -319,7 +324,8 @@ fun SliderBlink(
 
             },
             onValueChangeFinished = {
-                AdmobHelp.instance?.showInterstitialAd(activity,
+                AdmobHelp.instance?.showInterstitialAd(
+                    activity,
                     object : AdmobHelp.AdCloseListener {
                         override fun onAdClosed() {
                         }

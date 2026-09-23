@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity() {
             FlashlightTheme {
                 // System bars are the same color as the window. Inset the content once
                 // so it stays where it was before edge-to-edge enforcement.
-                Box(Modifier.fillMaxSize().safeDrawingPadding()) {
+                Box(Modifier
+                    .fillMaxSize()
+                    .safeDrawingPadding()) {
                     FlashlightApp()
                 }
             }

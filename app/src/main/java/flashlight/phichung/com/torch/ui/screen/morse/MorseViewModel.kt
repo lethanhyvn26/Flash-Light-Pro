@@ -3,13 +3,13 @@ package flashlight.phichung.com.torch.ui.screen.morse
 
 import android.content.Context
 import android.hardware.camera2.CameraManager
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ProcessLifecycleOwner
 import dagger.hilt.android.lifecycle.HiltViewModel
 import flashlight.phichung.com.torch.MyApplication
 import flashlight.phichung.com.torch.base.BaseViewModel

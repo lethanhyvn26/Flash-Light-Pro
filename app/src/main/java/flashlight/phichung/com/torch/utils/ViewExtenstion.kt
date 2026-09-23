@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.core.net.toUri
 import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -13,6 +12,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import flashlight.phichung.com.torch.R
 
 fun hexToColor(hex: String): Color {

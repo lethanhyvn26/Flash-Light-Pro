@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.gms.ads.MobileAds
 import com.haohao.billing.BillingClientListener
 import com.haohao.billing.BillingHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +35,7 @@ class SplashActivity : AppCompatActivity() {
 
     private lateinit var googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
     private val isMobileAdsInitializeCalled = AtomicBoolean(false)
+
     @Inject
     lateinit var cachePreferencesHelper: CachePreferencesHelper
 
@@ -164,10 +164,7 @@ class SplashActivity : AppCompatActivity() {
             })
 
 
-
-
     }
-
 
 
 }

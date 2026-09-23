@@ -1,7 +1,7 @@
 package flashlight.phichung.com.torch.ui.screen.settings
 
-import android.app.Activity
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +33,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.activity.compose.LocalActivity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -98,10 +97,12 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
         var stateSound by remember { mutableStateOf(viewModel.getSoundState()) }
         var stateAutomaticFlashMode by remember { mutableStateOf(viewModel.getAutomaticOnState()) }
         val activity = LocalActivity.current as AppCompatActivity
-       val googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(MyApplication.instance)
-        LazyColumn(modifier = Modifier
-            .padding(horizontal = 15.dp)
-            .weight(1f),
+        val googleMobileAdsConsentManager =
+            GoogleMobileAdsConsentManager.getInstance(MyApplication.instance)
+        LazyColumn(
+            modifier = Modifier
+                .padding(horizontal = 15.dp)
+                .weight(1f),
             verticalArrangement = Arrangement.spacedBy(10.dp),
             contentPadding = PaddingValues(vertical = 15.dp),
             content = {
@@ -118,7 +119,8 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
                         mainText = stringResource(id = R.string.str_settings_language),
                         onClick = {
 
-                            AdmobHelp.instance?.showInterstitialAd(activity,
+                            AdmobHelp.instance?.showInterstitialAd(
+                                activity,
                                 object : AdmobHelp.AdCloseListener {
                                     override fun onAdClosed() {
                                         activity.launchCountryPickerDialog(
@@ -126,10 +128,12 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
                                             allowSearch = false,
                                             onCountryClickListener = { languageModel ->
                                                 val langChange = languageModel?.code ?: ""
-                                                Timber.tag("HAOHAO").i("langChange : %s", langChange)
+                                                Timber.tag("HAOHAO")
+                                                    .i("langChange : %s", langChange)
                                                 viewModel.setLanguageApp(langChange)
                                                 val index = localesLanguageApp.indexOfFirst {
-                                                    it.toLanguageTag().lowercase() == langChange.lowercase()
+                                                    it.toLanguageTag()
+                                                        .lowercase() == langChange.lowercase()
                                                 }
                                                 if (index != -1) {
                                                     Timber.tag("HAOHAO").i("index : %s", index)
@@ -167,7 +171,8 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
                         statusSwitch = stateAutomaticFlashMode,
                         onCheckedChange = {
                             //  stateSound = it
-                            AdmobHelp.instance?.showInterstitialAd(activity,
+                            AdmobHelp.instance?.showInterstitialAd(
+                                activity,
                                 object : AdmobHelp.AdCloseListener {
                                     override fun onAdClosed() {
                                         viewModel.setAutomaticOnState(it)
@@ -190,7 +195,8 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
                         statusSwitch = stateSound,
                         onCheckedChange = {
                             //  stateSound = it
-                            AdmobHelp.instance?.showInterstitialAd(activity,
+                            AdmobHelp.instance?.showInterstitialAd(
+                                activity,
                                 object : AdmobHelp.AdCloseListener {
                                     override fun onAdClosed() {
                                         viewModel.setSoundState(it)
@@ -218,7 +224,7 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
                     )
                 }
 
-                if(googleMobileAdsConsentManager.isPrivacyOptionsRequired){
+                if (googleMobileAdsConsentManager.isPrivacyOptionsRequired) {
                     item {
                         CustomOptionsItem(
                             icon = R.drawable.ic_privacy_admod,
@@ -226,7 +232,11 @@ fun CustomOptionUI(padding: PaddingValues, viewModel: SettingsViewModel) {
                             onClick = {
                                 googleMobileAdsConsentManager.showPrivacyOptionsForm(activity) { formError ->
                                     if (formError != null) {
-                                        Toast.makeText(activity, formError.message, Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            activity,
+                                            formError.message,
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                 }
                             },

@@ -10,10 +10,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -73,7 +73,8 @@ fun ButtonChild(
         modifier = Modifier
             .size(50.dp)
             .clickable {
-                AdmobHelp.instance?.showInterstitialAd(activity,
+                AdmobHelp.instance?.showInterstitialAd(
+                    activity,
                     object : AdmobHelp.AdCloseListener {
                         override fun onAdClosed() {
                             clickAction.invoke()
@@ -120,8 +121,8 @@ fun NavigationIcon(
 @Composable
 fun AdmobBanner(modifier: Modifier = Modifier, cachePreferencesHelper: CachePreferencesHelper) {
     val adWidth = (
-        LocalWindowInfo.current.containerSize.width / LocalDensity.current.density
-        ).toInt()
+            LocalWindowInfo.current.containerSize.width / LocalDensity.current.density
+            ).toInt()
     val context = LocalContext.current
 
     val adSize = anchoredBannerSize(context, adWidth)
@@ -179,7 +180,11 @@ fun TopAppBarApp(
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, null, tint = IconWhiteColor)
+                        Icon(
+                            Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                            null,
+                            tint = IconWhiteColor
+                        )
                     }
                 }, colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary

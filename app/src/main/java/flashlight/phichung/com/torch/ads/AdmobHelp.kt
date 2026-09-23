@@ -3,7 +3,11 @@ package flashlight.phichung.com.torch.ads
 import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import flashlight.phichung.com.torch.R
@@ -14,7 +18,7 @@ class AdmobHelp private constructor() {
     private var adCloseListener: AdCloseListener? = null
     private var isReload = false
     private var countShowAdsInterstitial = 0
-    val NUMBER_COUNT_SHOW_ADS=1
+    val NUMBER_COUNT_SHOW_ADS = 1
 
     var isAdsInterstitialShowing = false
 

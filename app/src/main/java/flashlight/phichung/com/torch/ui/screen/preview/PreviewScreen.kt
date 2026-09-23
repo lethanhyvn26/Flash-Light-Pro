@@ -2,18 +2,17 @@ package flashlight.phichung.com.torch.ui.screen.preview
 
 import android.app.Activity
 import android.net.Uri
-import timber.log.Timber
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -35,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import flashlight.phichung.com.torch.ui.components.AdmobBanner
 import flashlight.phichung.com.torch.ui.theme.IconWhiteColor
+import timber.log.Timber
 
 
 object PreviewNavigation {
@@ -85,7 +85,11 @@ fun PreviewScreen(
                         },
                         navigationIcon = {
                             IconButton(onClick = { navController.navigateUp() }) {
-                                Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, null, tint = IconWhiteColor)
+                                Icon(
+                                    Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                                    null,
+                                    tint = IconWhiteColor
+                                )
                             }
                         },
                         colors = TopAppBarDefaults.topAppBarColors(

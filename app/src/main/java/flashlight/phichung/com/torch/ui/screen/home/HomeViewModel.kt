@@ -208,10 +208,12 @@ class HomeViewModel @Inject constructor(
                     }
 
                 }
+
                 1 -> {
                     camManager?.setTorchMode(cameraId!!, true) // Turn ON
 
                 }
+
                 else -> {
                     jobBlink = CoroutineScope(Dispatchers.IO).launch {
                         val delayMs = ((10 - blinkValue) * 100L) // Adjust as needed

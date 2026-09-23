@@ -11,8 +11,6 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.appopen.AppOpenAd
 import com.haohao.languagepicker.getCurrentLanguageCode
 import com.haohao.languagepicker.initLanguage
@@ -20,18 +18,17 @@ import com.haohao.languagepicker.listLangAppSupport
 import com.haohao.languagepicker.localesLanguageApp
 import com.haohao.languagepicker.setApplicationLocales
 import dagger.hilt.android.HiltAndroidApp
-import flashlight.phichung.com.torch.ads.AdmobHelp
 import flashlight.phichung.com.torch.data.CachePreferencesHelper
 import flashlight.phichung.com.torch.ui.activity.SplashActivity
 import flashlight.phichung.com.torch.utils.ReleaseTree
 import timber.log.Timber
 import java.lang.ref.WeakReference
-import java.util.Arrays
 import java.util.Date
 import javax.inject.Inject
 
 @HiltAndroidApp
-class MyApplication : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecycleObserver {
+class MyApplication : Application(), Application.ActivityLifecycleCallbacks,
+    DefaultLifecycleObserver {
 
     companion object {
 

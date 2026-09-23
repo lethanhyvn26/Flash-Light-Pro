@@ -3,7 +3,11 @@ package flashlight.phichung.com.torch.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Matrix
+import android.graphics.PointF
+import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -1052,6 +1056,7 @@ class ZoomImageView : AppCompatImageView {
         // Remember last point position for dragging
         //
         private val last = PointF()
+
         @SuppressLint("ClickableViewAccessibility") // Single tap already calls performClick() in GestureListener.
         override fun onTouch(
             v: View,
@@ -1399,7 +1404,7 @@ class ZoomImageView : AppCompatImageView {
         }
     }
 
-    private inner class CompatScroller(context: Context?) {
+    private class CompatScroller(context: Context?) {
         var scroller: Scroller? = null
         var overScroller: OverScroller? = null
         var isPreGingerbread = false
@@ -1486,7 +1491,7 @@ class ZoomImageView : AppCompatImageView {
             }
     }
 
-    private inner class ZoomVariables(
+    private class ZoomVariables(
         var scale: Float,
         var focusX: Float,
         var focusY: Float,
