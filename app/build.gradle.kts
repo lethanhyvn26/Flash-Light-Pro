@@ -23,8 +23,28 @@ android {
         }
     }
 
+    val releaseStorePassword = "huutriphichung"
+    val releaseKeyAlias = "flashlight"
+    val releaseKeyPassword = "huutriphichung"
+
+    signingConfigs {
+        create("release") {
+            storeFile = rootProject.file("FlashlightPro.jks")
+            storePassword = releaseStorePassword
+            keyAlias = releaseKeyAlias
+            keyPassword = releaseKeyPassword
+        }
+    }
+
     buildTypes {
         release {
+            if (
+                releaseStorePassword.isNotBlank() &&
+                releaseKeyAlias.isNotBlank() &&
+                releaseKeyPassword.isNotBlank()
+            ) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
