@@ -14,8 +14,8 @@ android {
         applicationId = "flashlight.phichung.com.torch"
         minSdk = 24
         targetSdk = 37
-        versionCode = 6
-        versionName = "1.1.6"
+        versionCode = 20
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -50,10 +50,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            resValue("string", "str_ads_google_app_id", "ca-app-pub-4824353242373249~8219707070")
-            resValue("string", "str_ads_banner", "ca-app-pub-4824353242373249/4433000143")
-            resValue("string", "str_ads_open", "ca-app-pub-4824353242373249/1921781637")
-            resValue("string", "str_ads_interstitial", "ca-app-pub-4824353242373249/3340457472")
+            resValue("string", "str_ads_google_app_id", "ca-app-pub-4796190056177032~2575781118")
+            resValue("string", "str_ads_banner", "ca-app-pub-4796190056177032/1934537304")
+            resValue("string", "str_ads_open", "ca-app-pub-4796190056177032/5682210625")
+            resValue("string", "str_ads_interstitial", "ca-app-pub-4796190056177032/4008282285")
         }
         debug {
             isMinifyEnabled = false
