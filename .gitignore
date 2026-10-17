@@ -40,3 +40,5 @@ output-metadata.json
 # OS
 .DS_Store
 Thumbs.db
+# Private repo: this upload key is tracked on purpose.
+!/FlashlightPro.jks
