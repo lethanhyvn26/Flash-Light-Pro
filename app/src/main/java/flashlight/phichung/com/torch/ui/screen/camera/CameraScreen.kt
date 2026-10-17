@@ -1,5 +1,6 @@
 package flashlight.phichung.com.torch.ui.screen.camera
 
+import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.appcompat.app.AppCompatActivity
@@ -56,7 +57,6 @@ import flashlight.phichung.com.torch.ui.components.ButtonChild
 import flashlight.phichung.com.torch.ui.components.TopAppBarApp
 import flashlight.phichung.com.torch.utils.CameraPermission
 import kotlinx.coroutines.delay
-import java.io.File
 
 
 object CameraNavigation {
@@ -151,7 +151,7 @@ fun CameraSection(
     cameraState: CameraState,
     usePinchToZoom: Boolean,
     useTapToFocus: Boolean,
-    lastPicture: File?,
+    lastPicture: Uri?,
     onTakePicture: () -> Unit,
     onGalleryClick: () -> Unit,
 ) {
@@ -206,7 +206,7 @@ fun CameraSection(
 }
 
 @Composable
-fun BlinkPictureBox(lastPicture: File?, isVideo: Boolean) {
+fun BlinkPictureBox(lastPicture: Uri?, isVideo: Boolean) {
     var picture by remember(Unit) { mutableStateOf(lastPicture) }
     if (!isVideo && lastPicture != picture) {
         Box(
@@ -253,7 +253,7 @@ private fun PictureButton(
 
 
 @Composable
-fun GalleryButton(lastPicture: File?, onClick: () -> Unit) {
+fun GalleryButton(lastPicture: Uri?, onClick: () -> Unit) {
     var shouldAnimate by remember { mutableStateOf(false) }
     val animScale by animateFloatAsState(targetValue = if (shouldAnimate) 1.25F else 1F)
     AsyncImage(

@@ -6,7 +6,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import flashlight.phichung.com.torch.camera.data.local.datasource.FileDataSource
 import flashlight.phichung.com.torch.data.CachePreferencesHelper
 import flashlight.phichung.com.torch.utils.CoroutineContextProvider
 import flashlight.phichung.com.torch.utils.CoroutineContextProviderImp
@@ -28,13 +27,6 @@ object AppModule {
     @Singleton
     fun providePreferenceHelper(@ApplicationContext context: Context): CachePreferencesHelper {
         return CachePreferencesHelper(context)
-    }
-
-
-    @Provides
-    @Singleton
-    fun provideFileDataSource(): FileDataSource {
-        return FileDataSource()
     }
 
 

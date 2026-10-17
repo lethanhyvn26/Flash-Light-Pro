@@ -26,7 +26,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -74,8 +73,6 @@ fun PreviewScreen(
         }
 
         is PreviewUiState.Ready -> {
-            val context = LocalContext.current
-
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -97,7 +94,7 @@ fun PreviewScreen(
                         ),
                         actions = {
                             IconButton(onClick = {
-                                viewModel.deleteFile(context, intentSenderLauncher, result.file)
+                                viewModel.deleteFile(intentSenderLauncher, result.uri)
                             }) {
                                 Icon(
                                     imageVector = Icons.Filled.Delete,
@@ -111,13 +108,12 @@ fun PreviewScreen(
                         )
                 },
                 content = ({
-                    val file = result.file
                     Column(modifier = Modifier.padding(it)) {
                         AsyncImage(
                             modifier = Modifier.weight(1f),
-                            model = file,
+                            model = result.uri,
                             contentScale = ContentScale.Fit,
-                            contentDescription = file.name,
+                            contentDescription = result.name,
                         )
 
                         Spacer(modifier = Modifier.size(15.dp))

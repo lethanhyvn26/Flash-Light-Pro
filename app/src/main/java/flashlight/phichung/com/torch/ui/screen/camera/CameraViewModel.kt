@@ -1,8 +1,8 @@
 package flashlight.phichung.com.torch.ui.screen.camera
 
 
+import android.net.Uri
 import android.os.Build
-import androidx.lifecycle.viewModelScope
 import com.haohao.camposer.state.CameraState
 import com.haohao.camposer.state.ImageCaptureResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +14,6 @@ import flashlight.phichung.com.torch.utils.CoroutineContextProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import java.io.File
 import javax.inject.Inject
 
 
@@ -37,20 +35,20 @@ class CameraViewModel @Inject constructor(
 
 
     init {
-
-        _uiState.value = CameraUiState.Ready(User.Default, fileDataSource.lastPicture).apply {
-            this@CameraViewModel.user = user
-
+        launchCoroutineIO {
+            _uiState.value = CameraUiState.Ready(
+                user = User.Default,
+                lastPicture = fileDataSource.latestCaptured()?.uri,
+            )
         }
-
     }
 
 
     fun takePicture(cameraState: CameraState) = with(cameraState) {
-        viewModelScope.launch {
+        launchCoroutineMain {
             when {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> takePicture(
-                    fileDataSource.imageContentValues,
+                    fileDataSource.newImageContentValues(),
                     onResult = ::onImageResult
                 )
 
@@ -63,10 +61,11 @@ class CameraViewModel @Inject constructor(
     }
 
 
-    private fun captureSuccess() {
-        viewModelScope.launch {
+    private fun captureSuccess(savedUri: Uri?) {
+        launchCoroutineIO {
+            val latest = savedUri ?: fileDataSource.latestCaptured()?.uri
             _uiState.update {
-                CameraUiState.Ready(user = user, lastPicture = fileDataSource.lastPicture)
+                CameraUiState.Ready(user = user, lastPicture = latest)
             }
         }
     }
@@ -75,12 +74,15 @@ class CameraViewModel @Inject constructor(
     private fun onImageResult(imageResult: ImageCaptureResult) {
         when (imageResult) {
             is ImageCaptureResult.Error -> onError(imageResult.throwable)
-            is ImageCaptureResult.Success -> captureSuccess()
+            is ImageCaptureResult.Success -> captureSuccess(imageResult.savedUri)
         }
     }
 
     private fun onError(throwable: Throwable?) {
-        _uiState.update { CameraUiState.Ready(user, fileDataSource.lastPicture, throwable) }
+        _uiState.update { current ->
+            val picture = (current as? CameraUiState.Ready)?.lastPicture
+            CameraUiState.Ready(user, picture, throwable)
+        }
     }
 
 }
@@ -89,7 +91,7 @@ sealed interface CameraUiState {
     data object Initial : CameraUiState
     data class Ready(
         val user: User,
-        val lastPicture: File?,
+        val lastPicture: Uri?,
         val throwable: Throwable? = null,
     ) : CameraUiState
 }

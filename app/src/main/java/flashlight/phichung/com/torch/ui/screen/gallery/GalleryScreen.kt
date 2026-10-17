@@ -56,11 +56,11 @@ import coil.request.ImageRequest
 import coil.request.videoFramePercent
 import flashlight.phichung.com.torch.R
 import flashlight.phichung.com.torch.ads.AdmobHelp
+import flashlight.phichung.com.torch.camera.data.local.datasource.CapturedMedia
 import flashlight.phichung.com.torch.ui.components.AdmobBanner
 import flashlight.phichung.com.torch.ui.components.TopAppBarApp
 import flashlight.phichung.com.torch.ui.theme.TextWhiteColor
-import flashlight.phichung.com.torch.utils.getDuration
-import java.io.File
+import flashlight.phichung.com.torch.utils.mediaDurationSeconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
@@ -85,7 +85,7 @@ fun GalleryScreen(
             Column(Modifier.padding(it)) {
 
                 Box(modifier = Modifier.weight(1f)) {
-                    viewModel.fetchGallery()
+                    LaunchedEffect(Unit) { viewModel.fetchGallery() }
                     val uiState by viewModel.uiState.collectAsState()
                     when (val result: GalleryUiState = uiState) {
                         GalleryUiState.Initial -> GalleryLoading()
@@ -126,7 +126,7 @@ private fun GalleryEmpty() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun GallerySection(imageFiles: List<File>, onPreviewClick: (String) -> Unit) {
+private fun GallerySection(imageFiles: List<CapturedMedia>, onPreviewClick: (String) -> Unit) {
     val activity = LocalView.current.context as AppCompatActivity
     LazyVerticalGrid(
         modifier = Modifier.fillMaxSize(),
@@ -134,10 +134,12 @@ private fun GallerySection(imageFiles: List<File>, onPreviewClick: (String) -> U
         horizontalArrangement = Arrangement.spacedBy(1.dp),
         verticalArrangement = Arrangement.spacedBy(1.dp)
     ) {
-        items(imageFiles, { it.name }) { image ->
+        items(imageFiles, { it.uri.toString() }) { image ->
             val context = LocalContext.current
             var duration by rememberSaveable { mutableStateOf<Int?>(null) }
-            LaunchedEffect(Unit) { duration = image.getDuration(context) }
+            LaunchedEffect(image.uri) {
+                duration = mediaDurationSeconds(context, image.uri, image.isVideo)
+            }
             PlaceholderImage(
                 modifier = Modifier
                     .fillMaxSize()
@@ -150,11 +152,11 @@ private fun GallerySection(imageFiles: List<File>, onPreviewClick: (String) -> U
                             activity,
                             object : AdmobHelp.AdCloseListener {
                                 override fun onAdClosed() {
-                                    onPreviewClick(image.path)
+                                    onPreviewClick(image.uri.toString())
                                 }
                             })
                     }),
-                data = image,
+                data = image.uri,
                 contentDescription = image.name,
                 placeholder = {
                     Box(
